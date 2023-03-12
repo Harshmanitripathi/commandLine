@@ -8,36 +8,86 @@ public class Main {
         System.out.println("Enter the no. of Student to enter the details");
         int noOfStudents = sc.nextInt();
         int rollNo=0,ageOfStudent=0;
-        String addressOfStudent="",nameOfStudent="",courseA="",courseB="",courseC="",courseD="",courseE="",courseF="";
+        String addressOfStudent="",nameOfStudent="";
+        boolean courseA = false,courseB= false,courseC = false,courseD=false,courseE = false,courseF = false;
         details[] student = new details[noOfStudents];
 
         for (int i = 0; i < noOfStudents; i++) {
+            courseA = false;
+            courseB = false;
+            courseC = false;
+            courseD = false;
+            courseE = false;
+            courseF = false;
             student[i] = new details();
             System.out.println("Enter the details of " + i + " Student");
              rollNo = sc.nextInt();
             ageOfStudent = sc.nextInt();
              nameOfStudent = sc.next();
              addressOfStudent = sc.next();
-             courseA = sc.next();
-             courseB = sc.next();
-             courseC = sc.next();
-             courseD = sc.next();
-             courseE = sc.next();
-             courseF = sc.next();
+//             courseA = sc.next();
+//             courseB = sc.next();
+//             courseC = sc.next();
+//             courseD = sc.next();
+//             courseE = sc.next();
+//             courseF = sc.next();
             Queue<String> course = new LinkedList<>();
-//            while (course.size() <= 6) {
-//                int l = course.size();
-//                int k = 4 - l, terminate = 0;
-//                if (l < 4)
-//                    System.out.println("Please entre " + k + " more courses");
-//                if (k <= 0) {
-//                    System.out.println("enter 1 if you donot want to add anymore courses");
-//                    terminate = sc.nextInt();
-//                }
-//                if (terminate == 1) break;
-//                String specifiedCourse = sc.next();
-//                course.add(specifiedCourse);
-//            }
+            System.out.println("enter the no. of courses in digit, you want to take out of A,B,C,D,E,F");
+            int noOfCourses  = sc.nextInt();
+            if(noOfCourses<4){
+                System.out.println("Please enter at least 4 courses");
+                while(noOfCourses<4)
+                    noOfCourses = sc.nextInt();
+            }
+            Set<String> setOfCourses = new HashSet<String>();
+            setOfCourses.add("A");
+            setOfCourses.add("B");
+            setOfCourses.add("C");
+            setOfCourses.add("D");
+            setOfCourses.add("E");
+            setOfCourses.add("F");
+            for(int k=0;k<noOfCourses;k++){
+                System.out.print("Enter course out of ");
+                setOfCourses.remove(course.peek());
+                System.out.println(setOfCourses);
+                String elementCourse = sc.next();
+                if(course.contains(elementCourse) == true){
+                    System.out.println("You have previously entered this course try another");
+                    k--;
+                }
+                else
+                    course.add(elementCourse);
+            }
+//            System.out.println("I am out of the for loop");
+            while (!course.isEmpty()) {
+//                System.out.println("I am inside while");
+                System.out.println(course.peek());
+                if(course.peek().equals("A")){
+                    courseA=true;
+                    course.remove();
+                }
+                else if(course.peek().equals("B")){
+                    courseB = true;
+                    course.remove();
+                }
+                else if(course.peek().equals("C")){
+                    courseC = true;
+                    course.remove();
+                }
+                else if(course.peek().equals("D")){
+                    courseD = true;
+                    course.remove();
+                }
+                else if(course.peek().equals("E")){
+                    courseE = true;
+                    course.remove();
+                }
+                else if(course.peek().equals("F")){
+                    courseF = true;
+                    course.remove();
+                }
+
+            }
             student[i].setDetails(rollNo, ageOfStudent, nameOfStudent, addressOfStudent, courseA, courseB, courseC, courseD, courseE, courseF);
 
         }
@@ -109,11 +159,12 @@ public class Main {
 
 class details implements Comparator<details>,Serializable{
     public int rollNoOfStudent, ageOfStudent;
-    public String nameOfStudent, addressOfStudent, courseA, courseB, courseC, courseD, courseE, courseF;
+    public String nameOfStudent, addressOfStudent;
+    boolean courseA, courseB, courseC, courseD, courseE, courseF;
 
 
 
-    public void setDetails(int rollNoOfStudent, int ageOfStudent, String nameOfStudent, String addressOfStudent, String courseA, String courseB, String courseC, String courseD, String courseE, String courseF) {
+    public void setDetails(int rollNoOfStudent, int ageOfStudent, String nameOfStudent, String addressOfStudent, boolean courseA, boolean courseB, boolean courseC, boolean courseD, boolean courseE, boolean courseF) {
 
     this.rollNoOfStudent = rollNoOfStudent;
     this.ageOfStudent = ageOfStudent;
@@ -143,23 +194,23 @@ class details implements Comparator<details>,Serializable{
         for(int i=0;i< student.length;i++){
             if(student[i] == null)break;
             System.out.print(student[i].nameOfStudent+"\t"+student[i].rollNoOfStudent+"\t"+student[i].ageOfStudent+"\t"+student[i].addressOfStudent+"\t");
-            if(student[i].courseA != ""){
-                System.out.print(student[i].courseA+",");
+            if(student[i].courseA == true){
+                System.out.print("A ,");
             }
-            if(student[i].courseB != ""){
-                System.out.print(student[i].courseB+",");
+            if(student[i].courseB == true){
+                System.out.print("B ,");
             }
-            if(student[i].courseC != ""){
-                System.out.print(student[i].courseC+",");
+            if(student[i].courseC == true){
+                System.out.print("C ,");
             }
-            if(student[i].courseD != ""){
-                System.out.print(student[i].courseD+",");
+            if(student[i].courseD == true){
+                System.out.print("D ,");
             }
-            if(student[i].courseE != ""){
-                System.out.print(student[i].courseE+",");
+            if(student[i].courseE == true){
+                System.out.print("E ,");
             }
-            if(student[i].courseF != ""){
-                System.out.print(student[i].courseF+",");
+            if(student[i].courseF == true){
+                System.out.print("F");
             }
             System.out.println();
         }
