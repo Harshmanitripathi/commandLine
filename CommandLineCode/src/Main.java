@@ -109,28 +109,34 @@ public class Main {
         delete(rollNoToDelete, student, checkForRollNo);
         details.displayDetails(student);
 
-        details obj = new details();
-        obj.rollNoOfStudent = rollNo;
-        obj.ageOfStudent = ageOfStudent;
-        obj.nameOfStudent = nameOfStudent;
-        obj.addressOfStudent = addressOfStudent;
-        obj.courseA = courseA;
-        obj.courseB = courseB;
-        obj.courseC = courseC;
-        obj.courseD = courseD;
-        obj.courseE = courseE;
-        obj.courseF = courseF;
+//        details obj = new details(student);
+//        obj.rollNoOfStudent = rollNo;
+//        obj.ageOfStudent = ageOfStudent;
+//        obj.nameOfStudent = nameOfStudent;
+//        obj.addressOfStudent = addressOfStudent;
+//        obj.courseA = courseA;
+//        obj.courseB = courseB;
+//        obj.courseC = courseC;
+//        obj.courseD = courseD;
+//        obj.courseE = courseE;
+//        obj.courseF = courseF;
 //Saving the object in file
 
         File F = new File("obj.txt");
         FileOutputStream fileOut = new FileOutputStream(F);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(obj);
+        out.writeObject(student);
 
 //        Retrive the object from file
         FileInputStream fis = new FileInputStream(F);
         ObjectInputStream ois = new ObjectInputStream(fis);
         details obj1 = (details) ois.readObject();
+//        int[] showingDataStored = (int[]) ois.readObject();
+        ois.close();
+        fis.close();
+        System.out.println("Showing data which was saved in txt file");
+//        System.out.println(obj1.rollNoOfStudent);
+
 
         System.out.println("Press any key to exit");
         sc.next();
