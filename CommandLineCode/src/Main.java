@@ -20,10 +20,14 @@ public class Main {
             courseE = false;
             courseF = false;
             student[i] = new details();
-            System.out.println("Enter the details of " + i + " Student");
+            System.out.println("Enter the details of " + i+1 + " Student");
+            System.out.println("Enter the roll no.");
              rollNo = sc.nextInt();
+            System.out.println("Enter the age");
             ageOfStudent = sc.nextInt();
+            System.out.println("Enter the name of student");
              nameOfStudent = sc.next();
+            System.out.println("Enter the address of student");
              addressOfStudent = sc.next();
 //             courseA = sc.next();
 //             courseB = sc.next();
